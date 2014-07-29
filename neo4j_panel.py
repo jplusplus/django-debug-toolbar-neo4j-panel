@@ -97,6 +97,7 @@ class Neo4jPanel(DebugPanel):
     def url(self):
         return ''
 
+    @property
     def content(self):
         context = {'calls': self.calls, 'commands': {}}
         for tr in self.calls:
