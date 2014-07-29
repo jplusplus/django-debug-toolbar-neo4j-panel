@@ -8,7 +8,7 @@ from django.template import Template, Context
 from debug_toolbar.panels import Panel
 from django.utils.translation import ugettext_lazy as _, ungettext
 from debug_toolbar.utils import get_stack, tidy_stacktrace
-import neo4jrestclient.request
+import neo4jrestclient.client
 import logging
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ __all__ = ['Neo4jPanel']
 
 neo4j_call = Signal(providing_args=['duration', 'calls'])
 
-OldRequest = neo4jrestclient.request.Request
+OldRequest = neo4jrestclient.client.Request
 
 
 def render_headers(headers):
@@ -64,7 +64,7 @@ class TrackingRequest(OldRequest):
 
         return response, content
 
-neo4jrestclient.request.Request = TrackingRequest
+neo4jrestclient.client.Request = TrackingRequest
 
 
 class Neo4jPanel(Panel):
