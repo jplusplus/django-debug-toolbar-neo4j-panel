@@ -5,7 +5,7 @@ from django.utils.html import escape
 from django.dispatch import Signal
 from django.utils.safestring import mark_safe
 from django.template import Template, Context
-from debug_toolbar.panels import DebugPanel
+from debug_toolbar.panels import Panel
 from django.utils.translation import ugettext_lazy as _, ungettext
 from debug_toolbar.utils import get_stack, tidy_stacktrace
 import neo4jrestclient.request
@@ -67,7 +67,7 @@ class TrackingRequest(OldRequest):
 neo4jrestclient.request.Request = TrackingRequest
 
 
-class Neo4jPanel(DebugPanel):
+class Neo4jPanel(Panel):
     name = 'Neo4j'
     has_content = True
 
