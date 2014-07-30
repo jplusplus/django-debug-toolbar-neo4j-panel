@@ -55,7 +55,7 @@ class TrackingRequest(OldRequest):
         try:
             start = time.time()
             response, content = super(TrackingRequest, self)._request(method, url, data, headers)
-            call['response'] = render_headers(response) + u"\n\n" + unicode(content)
+            call['response'] = render_headers(response) + u"\n\n" + content.decode('utf-8')
         finally:
             stop = time.time()
             duration = (stop - start) * 1000
